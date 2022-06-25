@@ -1,14 +1,15 @@
 from __future__ import annotations
 
 import datetime
-from typing import Dict, Optional
+from typing import Optional
 
-from aiohttp import ClientSession
 from dateutil.parser import parse
+
+from .objects import GroupResponse, GroupMember, Shout
 
 
 class Group:
-    def __init__(self, data: Dict):
+    def __init__(self, data: GroupResponse):
         self._data = data
 
     def __repr__(self) -> str:
@@ -50,7 +51,7 @@ class Group:
 
 
 class GroupOwner:
-    def __init__(self, data: Dict):
+    def __init__(self, data: GroupMember):
         self._data = data
 
     def __repr__(self) -> str:
@@ -80,7 +81,7 @@ class GroupOwner:
 
 
 class GroupShout:
-    def __init__(self, data: Dict):
+    def __init__(self, data: Shout):
         self._data = data
 
     def __repr__(self) -> str:
@@ -105,7 +106,7 @@ class GroupShout:
 
 
 class GroupShoutPoster:
-    def __init__(self, data: Dict):
+    def __init__(self, data: GroupMember):
         self._data = data
 
     def __repr__(self) -> str:
