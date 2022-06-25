@@ -1,4 +1,4 @@
-from typing import Any, Dict, List
+from typing import Any, List
 
 from aiohttp import ClientSession
 
@@ -14,7 +14,7 @@ class Client:
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__}>"
 
-    async def _request(self, method: str, url: str, **kwargs: Any) -> Dict[Any, Any]:
+    async def _request(self, method: str, url: str, **kwargs: Any) -> Any:
         async with self.session.request(method, url, **kwargs) as response:
             return await response.json()
 
