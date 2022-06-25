@@ -57,7 +57,7 @@ class Client:
             return str(response.url)
 
     async def fetch_user_groups(self, user_id: int) -> List[UserGroup]:
-        url = f"{GROUPS_V2}/users/{user_id}/groups"
+        url = f"{GROUPS_V2}/users/{user_id}/groups/roles"
         data = await self._request("GET", url)
         return [UserGroup(group) for group in data["data"]]
 
