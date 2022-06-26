@@ -1,8 +1,6 @@
-import asyncio
-from typing import Dict, List, Optional
+from typing import Any, List
 
-import aiohttp
-from aiohttp import ClientResponse, ClientSession
+from aiohttp import ClientSession
 
 from .group import Group
 from .user import User, UserGroup
@@ -16,7 +14,7 @@ class Client:
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__}>"
 
-    async def _request(self, method: str, url: str, **kwargs) -> Dict:
+    async def _request(self, method: str, url: str, **kwargs: Any) -> Any:
         async with self.session.request(method, url, **kwargs) as response:
             return await response.json()
 

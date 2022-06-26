@@ -1,13 +1,15 @@
 from __future__ import annotations
 
 import datetime
-from typing import Dict, Optional
+from typing import Optional
 
 from dateutil.parser import parse
 
+from .objects import GroupResponse, Role, UserGroupResponse, UserResponse
+
 
 class User:
-    def __init__(self, data: Dict):
+    def __init__(self, data: UserResponse) -> None:
         self._data = data
 
     def __repr__(self) -> str:
@@ -61,7 +63,7 @@ class User:
 
 
 class UserGroup:
-    def __init__(self, data: Dict):
+    def __init__(self, data: UserGroupResponse):
         self._data = data
 
     def __repr__(self) -> str:
@@ -79,7 +81,7 @@ class UserGroup:
 
 
 class UserMiniGroup:
-    def __init__(self, data: Dict):
+    def __init__(self, data: GroupResponse):
         self._data = data
 
     @property
@@ -99,7 +101,7 @@ class UserMiniGroup:
 
 
 class UserGroupRole:
-    def __init__(self, data: Dict):
+    def __init__(self, data: Role):
         self._data = data
 
     @property
