@@ -9,10 +9,9 @@ import asyncio
 import aioblox
 
 async def main():
-    client = aioblox.Client()
-    user = await client.fetch_user(1)
-    print(user)
-    await client.close()
+    async with aioblox.Client() as client:
+        user = await client.fetch_user(1)
+        print(user)
 
 asyncio.new_event_loop().run_until_complete(main())
 ```
