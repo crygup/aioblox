@@ -13,5 +13,5 @@ async def main():
         user = await client.fetch_user(1)
         print(user)
 
-asyncio.get_event_loop().run_until_complete(main())
+asyncio.new_event_loop().run_until_complete(main())
 ```
