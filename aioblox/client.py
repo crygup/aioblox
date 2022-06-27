@@ -1,4 +1,5 @@
-from typing import Any, List
+from typing import Any, List, Type
+from types import TracebackType
 
 from aiohttp import ClientSession
 
@@ -13,6 +14,17 @@ class Client:
 
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__}>"
+
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(
+        self,
+        _exec_type: Type[BaseException] | None,
+        _exec_val: BaseException | None,
+        _exec_tb: TracebackType | None,
+    ) -> None:
+        await self.close()
 
     async def _request(self, method: str, url: str, **kwargs: Any) -> Any:
         async with self.session.request(method, url, **kwargs) as response:
